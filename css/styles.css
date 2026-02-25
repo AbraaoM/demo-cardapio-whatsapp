@@ -11,49 +11,56 @@
 }
 
 :root {
-  --primary-color: #25D366;
-  --primary-dark: #1da851;
-  --secondary-color: #128C7E;
-  --text-dark: #333;
-  --text-light: #666;
-  --bg-light: #f5f5f5;
-  --white: #ffffff;
-  --border-color: #e0e0e0;
+  --primary-color: #c81d25;
+  --primary-dark: #9f151b;
+  --primary-rgb: 200, 29, 37;
+  --secondary-color: #f5c400;
+  --text-dark: #2f1b0c;
+  --text-light: #6f4b2a;
+  --bg-light: #fff3d8;
+  --white: #fffef9;
+  --border-color: #d7b56d;
   --error-color: #e74c3c;
   --success-color: #27ae60;
-  --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  --shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --shadow: 0 4px 12px rgba(47, 27, 12, 0.14);
+  --shadow-hover: 0 8px 18px rgba(47, 27, 12, 0.2);
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-family: 'Trebuchet MS', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
   color: var(--text-dark);
   background-color: var(--bg-light);
+  background-image: linear-gradient(180deg, #ffe8b5 0%, var(--bg-light) 55%, #fff9ec 100%);
   padding-bottom: 80px;
 }
 
 /* ========== Header ========== */
 .header {
-  background-color: var(--primary-color);
-  color: var(--white);
-  padding: 1rem;
+  background: linear-gradient(180deg, #d9252d 0%, var(--primary-color) 75%);
+  color: #fff9db;
+  padding: 1.1rem 1rem 1rem;
   text-align: center;
   box-shadow: var(--shadow);
   position: sticky;
   top: 0;
   z-index: 100;
+  border-bottom: 6px solid var(--secondary-color);
 }
 
 .header h1 {
   font-size: 1.5rem;
-  font-weight: 600;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  text-shadow: 0 2px 0 rgba(47, 27, 12, 0.22);
 }
 
 .header p {
   font-size: 0.9rem;
   opacity: 0.95;
   margin-top: 0.25rem;
+  color: #fff3c0;
 }
 
 /* ========== Container Principal ========== */
@@ -70,10 +77,12 @@ body {
 
 .category-title {
   font-size: 1.3rem;
-  color: var(--text-dark);
+  color: var(--primary-dark);
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
-  border-bottom: 2px solid var(--primary-color);
+  border-bottom: 3px solid var(--secondary-color);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .menu-grid {
@@ -85,20 +94,22 @@ body {
 /* ========== Cards de Produto ========== */
 .product-card {
   background-color: var(--white);
-  border-radius: 8px;
+  border-radius: 12px;
   padding: 1rem;
+  border: 2px solid #ecd39f;
   box-shadow: var(--shadow);
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
 }
 
 .product-card:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
   box-shadow: var(--shadow-hover);
+  border-color: var(--secondary-color);
 }
 
 .product-name {
   font-size: 1.1rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--text-dark);
   margin-bottom: 0.5rem;
 }
@@ -119,22 +130,24 @@ body {
 
 .product-price {
   font-size: 1.2rem;
-  font-weight: 700;
-  color: var(--primary-color);
+  font-weight: 800;
+  color: var(--primary-dark);
 }
 
 /* ========== Botões ========== */
 .btn {
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 700;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.2s, transform 0.1s;
+  transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
   text-decoration: none;
   display: inline-block;
   text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
 }
 
 .btn:active {
@@ -142,15 +155,17 @@ body {
 }
 
 .btn-add {
-  background-color: var(--primary-color);
-  color: var(--white);
+  background-color: var(--secondary-color);
+  color: #3d250d;
   padding: 0.6rem 1.2rem;
   font-size: 0.9rem;
   min-width: 100px;
+  border: 2px solid #d2a000;
+  box-shadow: 0 3px 0 #b88d00;
 }
 
 .btn-add:hover {
-  background-color: var(--primary-dark);
+  background-color: #ffd733;
 }
 
 .btn-add.added {
@@ -159,8 +174,10 @@ body {
 
 .btn-primary {
   background-color: var(--primary-color);
-  color: var(--white);
+  color: #ffeebe;
   width: 100%;
+  border: 2px solid #9a1218;
+  box-shadow: 0 3px 0 #7f0f14;
 }
 
 .btn-primary:hover {
@@ -174,14 +191,15 @@ body {
 }
 
 .btn-secondary {
-  background-color: var(--white);
+  background-color: #fff6de;
   color: var(--text-dark);
-  border: 2px solid var(--border-color);
+  border: 2px solid var(--primary-color);
   width: 100%;
+  box-shadow: 0 3px 0 #cdb58a;
 }
 
 .btn-secondary:hover {
-  background-color: var(--bg-light);
+  background-color: #ffefc8;
 }
 
 /* ========== Botão Fixo ========== */
@@ -190,10 +208,11 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: var(--white);
+  background-color: #fff8e4;
   padding: 1rem;
   box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
   z-index: 99;
+  border-top: 4px solid var(--primary-color);
 }
 
 .cart-button {
@@ -208,8 +227,8 @@ body {
   position: absolute;
   top: -8px;
   right: -8px;
-  background-color: var(--error-color);
-  color: var(--white);
+  background-color: var(--secondary-color);
+  color: #2f1b0c;
   border-radius: 50%;
   width: 24px;
   height: 24px;
@@ -218,6 +237,7 @@ body {
   justify-content: center;
   font-size: 0.75rem;
   font-weight: 700;
+  border: 2px solid var(--primary-color);
 }
 
 /* ========== Página de Revisão ========== */
@@ -227,10 +247,11 @@ body {
 
 .review-item {
   background-color: var(--white);
-  border-radius: 8px;
+  border-radius: 10px;
   padding: 1rem;
   margin-bottom: 1rem;
   box-shadow: var(--shadow);
+  border: 2px solid #ecd39f;
   display: grid;
   grid-template-columns: 1fr auto auto;
   gap: 1rem;
@@ -262,9 +283,9 @@ body {
 .btn-quantity {
   width: 32px;
   height: 32px;
-  border: 2px solid var(--primary-color);
-  background-color: var(--white);
-  color: var(--primary-color);
+  border: 2px solid #d2a000;
+  background-color: #ffefbd;
+  color: var(--text-dark);
   border-radius: 6px;
   font-size: 1.2rem;
   font-weight: 700;
@@ -276,8 +297,8 @@ body {
 }
 
 .btn-quantity:hover {
-  background-color: var(--primary-color);
-  color: var(--white);
+  background-color: var(--secondary-color);
+  color: #3d250d;
 }
 
 .btn-quantity:active {
@@ -294,18 +315,19 @@ body {
 
 .review-item-subtotal {
   font-size: 1rem;
-  font-weight: 700;
-  color: var(--primary-color);
+  font-weight: 800;
+  color: var(--primary-dark);
   text-align: right;
   min-width: 80px;
 }
 
 .total-section {
   background-color: var(--white);
-  border-radius: 8px;
+  border-radius: 10px;
   padding: 1.5rem;
   box-shadow: var(--shadow);
   margin-bottom: 1rem;
+  border: 2px solid #e4c889;
 }
 
 .total-row {
@@ -317,22 +339,23 @@ body {
 .total-label {
   font-size: 1.3rem;
   font-weight: 700;
-  color: var(--text-dark);
+  color: var(--primary-dark);
 }
 
 .total-value {
   font-size: 1.5rem;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--primary-color);
 }
 
 /* ========== Página de Checkout ========== */
 .checkout-form {
   background-color: var(--white);
-  border-radius: 8px;
+  border-radius: 10px;
   padding: 1.5rem;
   box-shadow: var(--shadow);
   margin-bottom: 1rem;
+  border: 2px solid #e4c889;
 }
 
 .form-section {
@@ -345,10 +368,10 @@ body {
 
 .form-section h3 {
   font-size: 1.1rem;
-  color: var(--text-dark);
+  color: var(--primary-dark);
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 2px solid #f0d28b;
 }
 
 .form-group {
@@ -369,12 +392,14 @@ body {
   font-size: 1rem;
   border: 2px solid var(--border-color);
   border-radius: 6px;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background-color: #fffdf6;
 }
 
 .form-group input:focus {
   outline: none;
   border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.15);
 }
 
 /* Radio buttons para tipo de entrega */
@@ -392,10 +417,11 @@ body {
   border-radius: 6px;
   cursor: pointer;
   transition: border-color 0.2s, background-color 0.2s;
+  background-color: #fffdf6;
 }
 
 .radio-option:hover {
-  background-color: var(--bg-light);
+  background-color: #fff3d1;
 }
 
 .radio-option input[type="radio"] {
@@ -419,12 +445,12 @@ body {
 
 .radio-option:has(input[type="radio"]:checked) {
   border-color: var(--primary-color);
-  background-color: rgba(37, 211, 102, 0.05);
+  background-color: rgba(var(--primary-rgb), 0.08);
 }
 
 /* Endereço de retirada */
 .pickup-address-box {
-  background-color: var(--bg-light);
+  background-color: #fff3d1;
   border: 2px solid var(--border-color);
   border-radius: 6px;
   padding: 1rem;
@@ -525,6 +551,9 @@ body {
   text-align: center;
   padding: 3rem 1rem;
   color: var(--text-light);
+  background-color: #fff9eb;
+  border: 2px dashed #e3c47f;
+  border-radius: 10px;
 }
 
 .empty-state h2 {
