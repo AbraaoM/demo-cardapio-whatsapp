@@ -53,8 +53,9 @@
               name="delivery-type" 
               value="delivery"
               checked
+              onchange="toggleAddressSection(this)"
             >
-            <label for="delivery">Delivery - Entregar no endereço</label>
+            <label for="delivery">🏠 Delivery - Entregar no endereço</label>
           </div>
           <div class="radio-option">
             <input 
@@ -62,8 +63,9 @@
               id="pickup" 
               name="delivery-type" 
               value="pickup"
+              onchange="toggleAddressSection(this)"
             >
-            <label for="pickup">Retirada - Buscar no local</label>
+            <label for="pickup">🏪 Retirada - Buscar no local</label>
           </div>
         </div>
       </div>
@@ -147,11 +149,28 @@
   <script src="js/ui.js"></script>
   
   <script>
+    // Função para alternar seção de endereço
+    function toggleAddressSection(radio) {
+      const deliverySection = document.getElementById('delivery-address-section');
+      const pickupSection = document.getElementById('pickup-address-section');
+      
+      if (radio.value === 'delivery') {
+        deliverySection.classList.add('active');
+        pickupSection.classList.remove('active');
+      } else {
+        deliverySection.classList.remove('active');
+        pickupSection.classList.add('active');
+      }
+    }
+
     // Inicializa o carrinho
     Cart.init();
     
     // Inicializa a página de checkout
     UI.initCheckout();
+    
+    // Mostra a seção correta ao carregar
+    toggleAddressSection(document.querySelector('input[name="delivery-type"]:checked'));
     
     // Event listener para o formulário
     document.getElementById('checkout-form').addEventListener('submit', (e) => {
