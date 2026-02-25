@@ -67,6 +67,9 @@ const UI = {
     card.className = 'product-card';
 
     card.innerHTML = `
+      <div class="product-image-container">
+        ${product.image ? `<img class="product-image" src="${product.image}" alt="${product.name}" loading="lazy">` : '<div class="product-image-placeholder">🍔</div>'}
+      </div>
       <h3 class="product-name">${product.name}</h3>
       <p class="product-description">${product.description}</p>
       <div class="product-footer">
@@ -74,6 +77,24 @@ const UI = {
         <button class="btn btn-add" data-id="${product.id}">Adicionar</button>
       </div>
     `;
+
+    // Adiciona animação de carregamento
+    if (product.image) {
+      const img = card.querySelector('.product-image');
+      if (img) {
+        img.addEventListener('load', () => {
+          img.classList.add('loaded');
+        });
+        img.addEventListener('error', () => {
+          console.warn(`Falha ao carregar imagem: ${product.image}`);
+          img.style.display = 'none';
+          const placeholder = document.createElement('div');
+          placeholder.className = 'product-image-placeholder';
+          placeholder.textContent = '🍔';
+          img.parentElement.appendChild(placeholder);
+        });
+      }
+    }
 
     const btn = card.querySelector('.btn-add');
     btn.addEventListener('click', () => {
