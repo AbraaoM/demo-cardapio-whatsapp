@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cardápio digital - Faça seu pedido pelo WhatsApp">
+  <title>Cardápio Digital</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <h1>🍔 Cardápio Digital</h1>
+    <p>Escolha seus produtos e faça seu pedido</p>
+  </header>
+
+  <!-- Container Principal -->
+  <main class="container">
+    <div id="menu-container">
+      <!-- Os produtos serão renderizados aqui via JavaScript -->
+    </div>
+  </main>
+
+  <!-- Botão Fixo para Revisar Pedido -->
+  <div class="fixed-bottom">
+    <div class="cart-button">
+      <button id="review-btn" class="btn btn-primary" disabled>
+        Ver Carrinho
+      </button>
+      <span id="cart-badge" class="cart-badge">0</span>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/ui.js"></script>
+  
+  <script>
+    // Inicializa o carrinho
+    Cart.init();
+    
+    // Renderiza o menu
+    UI.renderMenu();
+    
+    // Event listener para o botão de revisar pedido
+    document.getElementById('review-btn').addEventListener('click', () => {
+      window.location.href = 'review.html';
+    });
+  </script>
+</body>
+</html>

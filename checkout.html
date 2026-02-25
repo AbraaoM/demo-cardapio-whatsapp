@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Finalizar pedido">
+  <title>Finalizar Pedido - Cardápio Digital</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <h1>✅ Finalizar Pedido</h1>
+    <p>Informe seus dados para concluir</p>
+  </header>
+
+  <!-- Container Principal -->
+  <main class="container">
+    <!-- Total do Pedido -->
+    <div class="total-section">
+      <div class="total-row">
+        <span class="total-label">Total do Pedido:</span>
+        <span id="checkout-total" class="total-value">R$ 0,00</span>
+      </div>
+    </div>
+
+    <!-- Formulário de Checkout -->
+    <form id="checkout-form" class="checkout-form">
+      <!-- Telefone -->
+      <div class="form-section">
+        <h3>📞 Telefone para Contato</h3>
+        <div class="form-group">
+          <label for="phone">Número de WhatsApp *</label>
+          <input 
+            type="tel" 
+            id="phone" 
+            name="phone" 
+            placeholder="(11) 99999-9999"
+            required
+            pattern="[\(\d\)\s\-]+"
+          >
+        </div>
+      </div>
+
+      <!-- Tipo de Entrega -->
+      <div class="form-section">
+        <h3>🚚 Tipo de Entrega</h3>
+        <div class="radio-group">
+          <div class="radio-option">
+            <input 
+              type="radio" 
+              id="delivery" 
+              name="delivery-type" 
+              value="delivery"
+              checked
+            >
+            <label for="delivery">Delivery - Entregar no endereço</label>
+          </div>
+          <div class="radio-option">
+            <input 
+              type="radio" 
+              id="pickup" 
+              name="delivery-type" 
+              value="pickup"
+            >
+            <label for="pickup">Retirada - Buscar no local</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Endereço de Entrega -->
+      <div id="delivery-address-section" class="form-section">
+        <h3>📍 Endereço de Entrega</h3>
+        
+        <div class="form-group">
+          <label for="street">Rua *</label>
+          <input 
+            type="text" 
+            id="street" 
+            name="street" 
+            placeholder="Nome da rua"
+            required
+          >
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="number">Número *</label>
+            <input 
+              type="text" 
+              id="number" 
+              name="number" 
+              placeholder="Número"
+              required
+            >
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="neighborhood">Bairro *</label>
+          <input 
+            type="text" 
+            id="neighborhood" 
+            name="neighborhood" 
+            placeholder="Nome do bairro"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="complement">Complemento</label>
+          <input 
+            type="text" 
+            id="complement" 
+            name="complement" 
+            placeholder="Apartamento, bloco, etc. (opcional)"
+          >
+        </div>
+      </div>
+
+      <!-- Endereço de Retirada -->
+      <div id="pickup-address-section" class="form-section">
+        <h3>🏪 Endereço para Retirada</h3>
+        <div class="pickup-address-box">
+          <h4>Retire seu pedido em:</h4>
+          <p class="pickup-address"></p>
+        </div>
+      </div>
+
+      <!-- Botões de Ação -->
+      <div class="action-buttons">
+        <button type="button" onclick="window.location.href='review.html'" class="btn btn-secondary">
+          ← Voltar
+        </button>
+        <button type="submit" class="btn btn-primary">
+          Finalizar Pedido 📱
+        </button>
+      </div>
+    </form>
+  </main>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/whatsapp.js"></script>
+  <script src="js/ui.js"></script>
+  
+  <script>
+    // Inicializa o carrinho
+    Cart.init();
+    
+    // Inicializa a página de checkout
+    UI.initCheckout();
+    
+    // Event listener para o formulário
+    document.getElementById('checkout-form').addEventListener('submit', (e) => {
+      UI.handleCheckoutSubmit(e);
+    });
+  </script>
+</body>
+</html>

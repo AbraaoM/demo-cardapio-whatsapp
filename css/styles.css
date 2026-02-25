@@ -1,0 +1,570 @@
+/**
+ * styles.css
+ * Estilos responsivos mobile-first para o cardápio digital
+ */
+
+/* ========== Reset e Configurações Globais ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #25D366;
+  --primary-dark: #1da851;
+  --secondary-color: #128C7E;
+  --text-dark: #333;
+  --text-light: #666;
+  --bg-light: #f5f5f5;
+  --white: #ffffff;
+  --border-color: #e0e0e0;
+  --error-color: #e74c3c;
+  --success-color: #27ae60;
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  line-height: 1.6;
+  color: var(--text-dark);
+  background-color: var(--bg-light);
+  padding-bottom: 80px;
+}
+
+/* ========== Header ========== */
+.header {
+  background-color: var(--primary-color);
+  color: var(--white);
+  padding: 1rem;
+  text-align: center;
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.header p {
+  font-size: 0.9rem;
+  opacity: 0.95;
+  margin-top: 0.25rem;
+}
+
+/* ========== Container Principal ========== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* ========== Categorias e Menu ========== */
+.category-section {
+  margin-bottom: 2rem;
+}
+
+.category-title {
+  font-size: 1.3rem;
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--primary-color);
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+/* ========== Cards de Produto ========== */
+.product-card {
+  background-color: var(--white);
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.product-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.product-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+}
+
+.product-description {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+.product-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.product-price {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+/* ========== Botões ========== */
+.btn {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-add {
+  background-color: var(--primary-color);
+  color: var(--white);
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  min-width: 100px;
+}
+
+.btn-add:hover {
+  background-color: var(--primary-dark);
+}
+
+.btn-add.added {
+  background-color: var(--success-color);
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: var(--white);
+  width: 100%;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+}
+
+.btn-primary:disabled {
+  background-color: var(--border-color);
+  color: var(--text-light);
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background-color: var(--white);
+  color: var(--text-dark);
+  border: 2px solid var(--border-color);
+  width: 100%;
+}
+
+.btn-secondary:hover {
+  background-color: var(--bg-light);
+}
+
+/* ========== Botão Fixo ========== */
+.fixed-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--white);
+  padding: 1rem;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 99;
+}
+
+.cart-button {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  display: block;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: var(--error-color);
+  color: var(--white);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+/* ========== Página de Revisão ========== */
+.review-container {
+  margin-bottom: 2rem;
+}
+
+.review-item {
+  background-color: var(--white);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow);
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 1rem;
+  align-items: center;
+}
+
+.review-item-info {
+  min-width: 0;
+}
+
+.review-item-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 0.25rem;
+}
+
+.review-item-price {
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+.review-item-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-quantity {
+  width: 32px;
+  height: 32px;
+  border: 2px solid var(--primary-color);
+  background-color: var(--white);
+  color: var(--primary-color);
+  border-radius: 6px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.btn-quantity:hover {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+.btn-quantity:active {
+  transform: scale(0.95);
+}
+
+.review-item-quantity {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  min-width: 30px;
+  text-align: center;
+}
+
+.review-item-subtotal {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  text-align: right;
+  min-width: 80px;
+}
+
+.total-section {
+  background-color: var(--white);
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  margin-bottom: 1rem;
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.total-label {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.total-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+/* ========== Página de Checkout ========== */
+.checkout-form {
+  background-color: var(--white);
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  margin-bottom: 1rem;
+}
+
+.form-section {
+  margin-bottom: 1.5rem;
+}
+
+.form-section:last-child {
+  margin-bottom: 0;
+}
+
+.form-section h3 {
+  font-size: 1.1rem;
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+/* Radio buttons para tipo de entrega */
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem;
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.radio-option:hover {
+  background-color: var(--bg-light);
+}
+
+.radio-option input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  margin-right: 0.75rem;
+  cursor: pointer;
+}
+
+.radio-option label {
+  flex: 1;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 0;
+}
+
+.radio-option input[type="radio"]:checked + label {
+  color: var(--primary-color);
+}
+
+.radio-option:has(input[type="radio"]:checked) {
+  border-color: var(--primary-color);
+  background-color: rgba(37, 211, 102, 0.05);
+}
+
+/* Endereço de retirada */
+.pickup-address-box {
+  background-color: var(--bg-light);
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.pickup-address-box h4 {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  margin-bottom: 0.5rem;
+}
+
+.pickup-address {
+  font-size: 1rem;
+  color: var(--text-dark);
+  font-weight: 600;
+}
+
+/* Campos de endereço de delivery */
+#delivery-address-section {
+  display: none;
+}
+
+#pickup-address-section {
+  display: none;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+/* ========== Botões de Ação ========== */
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* ========== Responsividade ========== */
+
+/* Tablets (768px+) */
+@media (min-width: 768px) {
+  .menu-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .review-item {
+    grid-template-columns: 2fr auto auto;
+  }
+
+  .form-row {
+    grid-template-columns: 3fr 1fr;
+  }
+
+  .action-buttons {
+    flex-direction: row;
+  }
+
+  .action-buttons .btn {
+    flex: 1;
+  }
+
+  .header h1 {
+    font-size: 2rem;
+  }
+
+  .header p {
+    font-size: 1rem;
+  }
+}
+
+/* Desktop (1024px+) */
+@media (min-width: 1024px) {
+  .menu-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .container {
+    padding: 2rem;
+  }
+
+  body {
+    padding-bottom: 100px;
+  }
+}
+
+/* Desktop grande (1440px+) */
+@media (min-width: 1440px) {
+  .menu-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ========== Estados Vazios ========== */
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--text-light);
+}
+
+.empty-state h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.empty-state p {
+  margin-bottom: 1.5rem;
+}
+
+/* ========== Animações ========== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.product-card,
+.review-item {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* ========== Acessibilidade ========== */
+.btn:focus,
+input:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* ========== Impressão ========== */
+@media print {
+  .fixed-bottom,
+  .btn,
+  .header {
+    display: none;
+  }
+}

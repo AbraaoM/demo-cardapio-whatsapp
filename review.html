@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Revisão do pedido">
+  <title>Revisar Pedido - Cardápio Digital</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <h1>📋 Revisão do Pedido</h1>
+    <p>Confira os itens selecionados</p>
+  </header>
+
+  <!-- Container Principal -->
+  <main class="container">
+    <!-- Lista de Itens -->
+    <div id="review-container" class="review-container">
+      <!-- Os itens serão renderizados aqui via JavaScript -->
+    </div>
+
+    <!-- Total -->
+    <div class="total-section">
+      <div class="total-row">
+        <span class="total-label">Total:</span>
+        <span id="total-value" class="total-value">R$ 0,00</span>
+      </div>
+    </div>
+
+    <!-- Botões de Ação -->
+    <div class="action-buttons">
+      <button onclick="window.location.href='index.html'" class="btn btn-secondary">
+        ← Adicionar Mais Itens
+      </button>
+      <button onclick="window.location.href='checkout.html'" class="btn btn-primary">
+        Continuar →
+      </button>
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/ui.js"></script>
+  
+  <script>
+    // Inicializa o carrinho
+    Cart.init();
+    
+    // Renderiza a página de revisão
+    UI.renderReview();
+  </script>
+</body>
+</html>
