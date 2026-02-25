@@ -77,7 +77,7 @@ const menuData = [
 ];
 
 // Número do WhatsApp do restaurante (formato: código do país + DDD + número)
-const RESTAURANT_WHATSAPP = '5511999999999'; // ALTERAR AQUI
+const RESTAURANT_WHATSAPP = '5512991630587'; // ALTERAR AQUI
 
 // Endereço do restaurante para retirada
 const RESTAURANT_ADDRESS = {
