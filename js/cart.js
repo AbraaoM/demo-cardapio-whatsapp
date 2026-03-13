@@ -10,24 +10,43 @@ const Cart = {
    * Inicializa o carrinho recuperando dados do localStorage
    */
   init() {
-    this.items = Storage.getCart();
+    const storedItems = Storage.getCart();
+    this.items = Array.isArray(storedItems)
+      ? storedItems.map(item => this.normalizeStoredItem(item))
+      : [];
   },
 
   /**
    * Adiciona um item ao carrinho
    * @param {Object} product - Produto a ser adicionado
+   * @param {Object|null} configuration - Dados da configuração customizada
    */
-  addItem(product) {
-    const existingItem = this.items.find(item => item.id === product.id);
-    
+  addItem(product, configuration = null) {
+    const signature = configuration?.signature || 'default';
+    const key = this.generateItemKey(product.id, signature);
+    const existingItem = this.items.find(item => item.key === key);
+
+    const price = typeof configuration?.price === 'number' ? configuration.price : product.price;
+    const name = configuration?.displayName || product.name;
+    const customization = configuration
+      ? {
+          summary: configuration.summary,
+          selections: configuration.selections,
+          signature
+        }
+      : null;
+
     if (existingItem) {
       existingItem.quantity += 1;
+      existingItem.price = price;
     } else {
       this.items.push({
+        key,
         id: product.id,
-        name: product.name,
-        price: product.price,
-        quantity: 1
+        name,
+        price,
+        quantity: 1,
+        customization
       });
     }
     
@@ -35,17 +54,30 @@ const Cart = {
   },
 
   /**
+   * Incrementa a quantidade de um item existente
+   * @param {string} itemKey - Chave única do item
+   */
+  incrementItem(itemKey) {
+    const item = this.items.find(entry => entry.key === itemKey);
+    if (item) {
+      item.quantity += 1;
+      this.save();
+    }
+  },
+
+  /**
    * Remove uma unidade de um item do carrinho
    * @param {number} productId - ID do produto
+   * @param {string|null} itemKey - Chave única quando houver customização
    */
-  removeItem(productId) {
-    const item = this.items.find(item => item.id === productId);
+  removeItem(productId, itemKey = null) {
+    const item = this.findItem(productId, itemKey);
     
     if (item) {
       if (item.quantity > 1) {
         item.quantity -= 1;
       } else {
-        this.items = this.items.filter(item => item.id !== productId);
+        this.items = this.items.filter(entry => entry.key !== item.key);
       }
       this.save();
     }
@@ -54,10 +86,55 @@ const Cart = {
   /**
    * Remove completamente um item do carrinho
    * @param {number} productId - ID do produto
+   * @param {string|null} itemKey - Chave única quando houver customização
    */
-  deleteItem(productId) {
-    this.items = this.items.filter(item => item.id !== productId);
+  deleteItem(productId, itemKey = null) {
+    const item = this.findItem(productId, itemKey);
+    if (!item) return;
+    this.items = this.items.filter(entry => entry.key !== item.key);
     this.save();
+  },
+
+  /**
+   * Retorna um item considerando ID e chave
+   * @param {number} productId - ID do produto
+   * @param {string|null} itemKey - Chave única
+   * @returns {Object|undefined}
+   */
+  findItem(productId, itemKey = null) {
+    if (itemKey) {
+      return this.items.find(item => item.key === itemKey);
+    }
+
+    const defaultKey = this.generateItemKey(productId);
+    return this.items.find(item => item.key === defaultKey) || this.items.find(item => item.id === productId);
+  },
+
+  /**
+   * Cria a chave única de um item
+   * @param {number} productId - ID do produto
+   * @param {string} signature - Assinatura da customização
+   * @returns {string}
+   */
+  generateItemKey(productId, signature = 'default') {
+    return `${productId}::${signature}`;
+  },
+
+  /**
+   * Normaliza itens vindos do storage antigo
+   * @param {Object} item - Item bruto
+   * @returns {Object}
+   */
+  normalizeStoredItem(item) {
+    if (item.key) {
+      return item;
+    }
+
+    const signature = item.customization?.signature || 'default';
+    return {
+      ...item,
+      key: this.generateItemKey(item.id, signature)
+    };
   },
 
   /**

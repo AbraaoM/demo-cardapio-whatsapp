@@ -75,6 +75,138 @@ const menuData = [
     price: 14.00,
     category: 'Acompanhamentos',
     image: 'images/onion.png'
+  },
+  {
+    id: 10,
+    name: 'Monte sua Marmita',
+    description: 'Configure tamanho, mistura e acompanhamentos em etapas simples',
+    price: 24.00,
+    category: 'Combos Personalizados',
+    image: 'images/marmita.png',
+    flowLevels: [
+      {
+        id: 'style',
+        title: 'Escolha o estilo da marmita',
+        description: 'Defina a base antes de continuar',
+        selectionType: 'single',
+        minSelections: 1,
+        options: [
+          {
+            id: 'caseira',
+            label: 'Caseira',
+            description: 'Arroz, feijão, salada e farofa',
+            priceAdjustment: 0
+          },
+          {
+            id: 'lowcarb',
+            label: 'Low Carb',
+            description: 'Folhas, legumes salteados e mix de grãos',
+            priceAdjustment: 4
+          },
+          {
+            id: 'fit',
+            label: 'Fit',
+            description: 'Arroz integral, feijão verde, salada fresca',
+            priceAdjustment: 2
+          }
+        ]
+      },
+      {
+        id: 'size',
+        title: 'Selecione o tamanho',
+        description: 'O tamanho define o valor base da marmita',
+        selectionType: 'single',
+        minSelections: 1,
+        options: [
+          {
+            id: 'p',
+            label: 'Pequena (500g)',
+            description: 'Ideal para uma refeição leve',
+            priceOverride: 24
+          },
+          {
+            id: 'm',
+            label: 'Média (650g)',
+            description: 'Serve bem uma pessoa',
+            priceOverride: 29
+          },
+          {
+            id: 'g',
+            label: 'Grande (800g)',
+            description: 'Serve com folga ou para dividir',
+            priceOverride: 34
+          }
+        ]
+      },
+      {
+        id: 'protein',
+        title: 'Escolha a mistura',
+        description: 'Selecione a proteína principal',
+        selectionType: 'single',
+        minSelections: 1,
+        options: [
+          {
+            id: 'frango',
+            label: 'Frango grelhado',
+            description: 'Temperado com ervas frescas',
+            priceAdjustment: 0
+          },
+          {
+            id: 'carne',
+            label: 'Carne acebolada',
+            description: 'Alcatra fatiada com cebolas caramelizadas',
+            priceAdjustment: 3
+          },
+          {
+            id: 'tilapia',
+            label: 'Tilápia crocante',
+            description: 'Empanada na farinha panko',
+            priceAdjustment: 4
+          },
+          {
+            id: 'veg',
+            label: 'Mix vegetariano',
+            description: 'Cogumelos, tofu grelhado e legumes',
+            priceAdjustment: 2
+          }
+        ]
+      },
+      {
+        id: 'sides',
+        title: 'Escolha até 2 acompanhamentos',
+        description: 'Selecione os complementos preferidos',
+        selectionType: 'multi',
+        minSelections: 2,
+        maxSelections: 2,
+        options: [
+          {
+            id: 'vinagrete',
+            label: 'Vinagrete',
+            priceAdjustment: 0
+          },
+          {
+            id: 'farofa',
+            label: 'Farofa crocante',
+            priceAdjustment: 0
+          },
+          {
+            id: 'pure',
+            label: 'Purê de batata',
+            priceAdjustment: 1
+          },
+          {
+            id: 'legumes',
+            label: 'Legumes no vapor',
+            priceAdjustment: 1
+          },
+          {
+            id: 'salada',
+            label: 'Salada fresca',
+            priceAdjustment: 0
+          }
+        ]
+      }
+    ]
   }
 ];
 
