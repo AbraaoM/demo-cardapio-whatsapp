@@ -78,12 +78,31 @@ const UI = {
       </div>
     `;
 
-    // Adiciona animação de carregamento
+    // Adiciona animação de carregamento e extração de cor dominante
     if (product.image) {
       const img = card.querySelector('.product-image');
+      const container = card.querySelector('.product-image-container');
       if (img) {
         img.addEventListener('load', () => {
           img.classList.add('loaded');
+          
+          // Extrai a cor dominante da imagem
+          if (typeof ColorThief !== 'undefined') {
+            setTimeout(() => {
+              try {
+                const colorThief = new ColorThief();
+                const dominantColor = colorThief.getColor(img);
+                const rgbColor = `rgb(${dominantColor[0]}, ${dominantColor[1]}, ${dominantColor[2]})`;
+                
+                // Aclarar levemente a cor para melhor visual
+                const lightenedColor = this.lightenColor(dominantColor[0], dominantColor[1], dominantColor[2], 0.15);
+                container.style.setProperty('--dynamic-bg', lightenedColor);
+                container.classList.add('loaded');
+              } catch (e) {
+                console.warn('Erro ao extrair cor da imagem:', e);
+              }
+            }, 0);
+          }
         });
         img.addEventListener('error', () => {
           console.warn(`Falha ao carregar imagem: ${product.image}`);
@@ -298,5 +317,20 @@ const UI = {
 
     // Limpa o carrinho após enviar
     Cart.clear();
+  },
+
+  /**
+   * Clareia uma cor RGB
+   * @param {number} r - Componente vermelho
+   * @param {number} g - Componente verde
+   * @param {number} b - Componente azul
+   * @param {number} factor - Fator de clareamento (0-1)
+   * @returns {string} - Cor RGB aclarada
+   */
+  lightenColor(r, g, b, factor) {
+    const lightenValue = (value) => {
+      return Math.round(value + (255 - value) * factor);
+    };
+    return `rgb(${lightenValue(r)}, ${lightenValue(g)}, ${lightenValue(b)})`;
   }
 };
