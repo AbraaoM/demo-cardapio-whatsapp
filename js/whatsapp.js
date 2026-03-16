@@ -30,6 +30,13 @@ const WhatsApp = {
     items.forEach(item => {
       const subtotal = item.price * item.quantity;
       message += `- ${item.name} (${item.quantity}x) - ${this.formatCurrency(subtotal)}\n`;
+
+      if (item.customization?.selections?.length) {
+        item.customization.selections.forEach(selection => {
+          const options = selection.options.map(opt => opt.label).join(', ');
+          message += `   - ${selection.title}: ${options}\n`;
+        });
+      }
     });
     
     // Total
